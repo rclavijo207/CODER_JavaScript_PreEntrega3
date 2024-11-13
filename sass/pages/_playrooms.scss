@@ -1,0 +1,94 @@
+
+.booking{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    h1{
+        color: $color-umber;
+        font-size: 38px;
+        margin: 25px 0;
+    }
+    .booking-form{
+        //border: 1px dashed black;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        label{
+            color: $color-umber;
+            font-size: 18px;
+            margin: 5px 0;
+        }
+        input, select{
+            //margin: 0 0 15px 0;
+            height: 30px;
+            border-radius: 3px;
+            padding: 5px;
+            font-size: 16px;
+        }
+        textarea{
+            border-radius: 3px;
+            padding: 5px;
+            font-size: 16px;
+        }
+        
+        .booking-form-data{
+            //border: 1px dashed black;
+            display: flex;
+            flex-direction: row;
+            margin: 25px 0;
+            .booking-form-client{
+                .form-client, .form-info{
+                    //border: 1px dashed black;
+                    display: flex;
+                    flex-direction: column;
+                    margin: 0 50px 0 0;
+                    width: 300px;
+                }
+            }
+
+            .booking-form-playrooms{
+                .form-playrooms{
+                    //border: 1px dashed black;
+                    display: flex;
+                    flex-direction: column;
+                    margin: 25px 0 0 0;
+                    .room{
+                        display: flex;
+                        flex-direction: row;
+                        align-items: center;
+                        border: 1px solid $color-taupe;
+                        border-radius: 10px;
+                        width: 400px;
+                        margin: 0 0 10px 0;
+                        label{
+                            margin: 0 0 0 15px;
+                        }
+                    }
+                }
+            }
+        }
+
+        .booking-form-buttons{
+            //border: 1px dashed black;
+            display: flex;
+            justify-content: center;
+            button{
+                border-radius: 5px;
+                height: 40px;
+                color: $color-white;
+                font-size: 22px;
+            }
+            .btnReset{
+                background-color: $color-silver;
+                width: 120px;
+                margin: 0 25px 0 0;
+            }
+            .btnSubmit{
+                background-color: $color-olivine;
+                width: 180px;
+            }
+        }
+        
+    } // fin .booking-form
+} // fin .booking

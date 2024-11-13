@@ -1,0 +1,41 @@
+.site-header{
+    .site-header-desktop{
+        background-color: $color-header;
+        display: flex;
+        flex-direction: row;
+        .site-logo{
+            margin: 25px 0 0 50px;
+            @include desktop{
+                img{
+                    width: 200px;
+                    height: 100px;
+                }
+            }
+        }
+        .site-nav{
+            margin: 0 25px 25px auto;
+            justify-items: flex-end;
+            align-self: flex-end;
+            //border: 1px dashed black;
+            .site-nav-menu{
+                display: flex;
+                flex-direction: row;
+                font-size: 34px;
+                margin-top: auto;
+                li{
+                    list-style-type: none;
+                    a{
+                        margin: 0 20px;
+                    }
+                    a:hover{
+                        background-color: $color-beaver;
+                    }
+                    a:link, a:visited, a:active{
+                        color: $color-eggshell;
+                        text-decoration: none;;
+                    }
+                }
+            }
+        }
+    }
+}

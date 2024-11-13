@@ -1,0 +1,21 @@
+@import "abstracts/_media-quiery.scss";
+@import "abstracts/_colors.scss";
+@import "abstracts/_variables.scss";
+@import "utilities/_designs.scss";
+
+@import "layout/_header.scss";
+@import "layout/_footer.scss";
+@import "components/_forms.scss";
+
+@import "pages/_playrooms.scss";
+
+// Elementos
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: $font-family;
+}
+body{
+    background-color: $color-eggshell;
+}

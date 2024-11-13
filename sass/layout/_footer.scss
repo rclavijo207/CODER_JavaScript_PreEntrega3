@@ -1,0 +1,75 @@
+.site-footer{
+    .site-footer-desktop{
+        //border: 1px dashed black;
+        background-color: $color-footer;
+        display: flex;
+        flex-direction: row;
+
+        .site-socials{
+            //border: 1px solid black;
+            display: flex;
+            align-self: flex-start;
+            .socials-menu{
+                display: flex;
+                flex-direction: row;
+                margin: 10px 0 25px 0;
+                li{
+                    list-style-type: none;
+                    a{
+                        margin: 0 15px;
+                    }
+                }
+            }
+        }
+
+        .site-business{
+            //border: 1px solid black;
+            display: flex;
+            @include desktop{
+                flex-direction: row;
+                width: 100%;
+            }
+
+            .business-info{
+                //border: 1px dashed black;
+                display: flex;
+                flex-direction: row;
+                justify-content: space-evenly;
+                margin: 25px auto 0 150px;
+                li{
+                    list-style-type: none;
+                    margin: 15px 0;
+                }
+
+                .info-map{
+                    margin: 0 50px 25px 0;
+                }
+
+                .info-one, .info-two{
+                    align-self: center;
+                    font-size: 20px;
+                    color: $color-eggshell;
+                    .info-text{
+                        margin: 0 25px;
+                    }
+                }
+            }
+
+            .business-contact{
+                margin: 0 100px 0 0;
+                align-self: center;
+                button{
+                    @include desktop{
+                        width: 200px;
+                        height: 50px;
+                        color: $color-white;
+                        background-color: $color-resedagreen;
+                        font-size: 26px;
+                        border-radius: 20px;
+                    }
+                }
+            }
+        }
+
+    }
+}

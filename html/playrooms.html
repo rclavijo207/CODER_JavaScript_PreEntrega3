@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Yanone+Kaffeesatz:wght@200..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../sass/style.css">
+    <title>Playrooms | Animal Coffee</title>
+</head>
+<body>
+    <!-- Encabezado -->
+    <header class="site-header">
+        <!-- Desktop -->
+        <div class="site-header-desktop">
+            <div class="site-logo">
+                <a href="#" class="site-logo-button">
+                    <img src="../assets/img/placeholder/placeholder_logo.png" alt="Animal Coffee">
+                </a>
+            </div>  
+            <nav class="site-nav">
+                <ul class="site-nav-menu">
+                    <li><a href="../index.html" class="site-nav-link">Sobre nosotros</a></li>
+                    <li><a href="" class="site-nav-link">Menú</a></li>
+                    <li><a href="" class="site-nav-link">Hacer pedido</a></li>
+                    <li><a href="html/playrooms.html" class="site-nav-link">Playrooms</a></li>
+                    <li><a href="" class="site-nav-link">Comunidad</a></li>
+                </ul>
+            </nav>
+        </div>
+        <!-- Polígono -->
+        <div class="header-polygon"></div>
+    </header>
+    <!-- Contenido del sitio -->
+    <main>
+        <section class="booking">
+            <h1>Reservar Playroom</h1>
+            <form action="" id="booking-form" class="booking-form">
+                <div class="booking-form-data">
+                    <!-- Datos del cliente -->
+                    <div class="booking-form-client">
+                        <div class="form-client">
+                            <label for="cliFirstName">Nombre</label>
+                            <input type="text" id="cliFirstName">
+                            <label for="cliFirstName">Apellido</label>
+                            <input type="text" id="cliLastName">
+                            <label for="cliPhoneNumber">Teléfono</label>
+                            <input type="text" id="cliPhoneNumber">
+                            <label for="cliEMail">Correo</label>
+                            <input type="text" id="cliEMail">
+                        </div>
+                        <div class="form-info">
+                            <label for="infQuantity">Cantidad de visitantes</label>
+                            <select id="infQuantity" name="infQuantity">
+                                <option value="1">Uno</option>
+                                <option value="2">Dos</option>
+                                <option value="3">Tres</option>
+                                <option value="4">Cuatro</option>
+                                <option value="5">Más de cuatro (aclarar en comentarios)</option>
+                            </select>
+                            <label for="infComments">Comentarios</label>
+                            <textarea name="comments" id="infComments" rows="10" cols="30"></textarea>
+                        </div>
+                    </div>
+                    <!-- Datos de los Playrooms -->
+                    <div class="booking-form-playrooms">
+                        <div class="form-playrooms" id="form-playrooms">
+                            <!-- Ejemplo de fecha para playrooms -->
+                            <!--
+                            <div class="room">
+                                <input type="radio" id="room1" name="playrooms" class="plrChoice" value="1">
+                                <label for="room1">Playroom Crema Viernes 15/11/2024 16:00 a 17:00</label>
+                            </div>
+                            -->
+                        </div>
+                    </div>
+                </div>
+                <div class="booking-form-buttons">
+                    <button type="reset" class="btnReset">Borrar todo</button>
+                    <button type="submit" class="btnSubmit">Reservar</button>
+                </div>
+            </form>
+        </section>
+    </main>
+    <!-- Pie de página -->
+    <footer class="site-footer">
+        <!-- Polígono -->
+        <div class="footer-polygon"></div>
+        <div class="site-footer-desktop">
+            <!-- Redes sociales -->
+            <div class="site-socials">
+                <ul class="socials-menu">
+                    <li><a href=""><img src="../assets/img/placeholder/placeholder_social.png" alt="Instagram"></a></li>
+                    <li><a href=""><img src="../assets/img/placeholder/placeholder_social.png" alt="TikTok"></a></li>
+                    <li><a href=""><img src="../assets/img/placeholder/placeholder_social.png" alt="Facebook"></a></li>
+                    <li><a href=""><img src="../assets/img/placeholder/placeholder_social.png" alt="Youtube"></a></li>
+                </ul>
+            </div>
+            <!-- Empresa -->
+            <div class="site-business">
+                <!-- Información -->
+                <div class="business-info">
+                    <div class="info-map">
+                        <a href=""><img src="../assets/img/placeholder/placeholder_map.png" alt="Ubicación"></a>
+                    </div>
+                    <div class="info-one">
+                        <ul class="info-text">
+                            <li>Calle falsa 1234</li>
+                            <li>00000, Ciudad</li>
+                            <li>+000 123456789</li>
+                        </ul>
+                    </div>
+                    <div class="info-two">
+                        <ul class="info-text">
+                            <li>Lunes a Viernes, 08:00 a 20:00</li>
+                            <li>Sábados, 10:00 a 20:00</li>
+                            <li>animalcoffee@email.com</li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Medios de contacto -->
+                <div class="business-contact">
+                    <button type="button">Contáctanos</button>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="../js/PreEntrega3Clavijo.js"></script>
+</body>
+</html>
