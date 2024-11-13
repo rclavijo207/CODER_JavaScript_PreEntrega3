@@ -1,18 +1,17 @@
 //  Variables
-let listOfBookings = [];                            //  Reservas existentes                                                   
-let listOfSlots = [];                               //  Espacios para playrooms existentes
+let listOfBookings = [];                                            //  Reservas existentes                                                   
+let listOfSlots = [];                                               //  Espacios para playrooms existentes
 
-const SYS_DATE = new Date();                        //  Fecha del sistema
-const DATE_FORMAT = {                               //  Formato para fechas
+const SYS_DATE = new Date();                                        //  Fecha del sistema
+const DATE_FORMAT = {                                               //  Formato para fechas
     weekday: 'long', 
     day: 'numeric', 
     month: 'long'};
 
-let bookingForm =                                   //  Formulario para reservas
-    document.getElementById('booking-form');
+let bookingForm = document.getElementById('booking-form');          //  Formulario para reservas
 bookingForm.addEventListener("submit", validateBookingForm);
 
-const filledTextInput =                             //  Control de campos de texto
+const filledTextInput =                                             //  Control de campos de texto
     (input) => input.value.trim() !== "";
 
 //  Clases
@@ -36,17 +35,26 @@ class BookingSlot{
             //  Plantilla
             slot.innerHTML = `
                 <input type="radio" id="${this.id}" name="playrooms" class="plrChoice" value="${this.id}">
-                <label for="${this.id}">ID: ${this.id}Playroom ${this.room} ${this.date.toLocaleDateString("es-ES", DATE_FORMAT)} ${this.hour} (2 horas)</label>
+                <label for="${this.id}">ID: ${this.id} Playroom ${this.room} ${this.date.toLocaleDateString("es-ES", DATE_FORMAT)} ${this.hour} (2 horas)</label>
             `;
             //  Añadir
             container.appendChild(slot);
         }
     }
+    showSlot(){     // BORRAR
+        let msg = "Reserva:\n";
+        msg += `\n    ID:               ${this.id}`;
+        msg += `\n    Playroom:         ${this.room}`;
+        msg += `\n    Fecha:            ${this.date}`;
+        msg += `\n    Hora:             ${this.hour}`;
+        msg += `\n    Disponible?:      ${this.isVacant}`;
+        console.log(msg);
+    }
 }
 
 class ClientBooking{
     constructor(firstName, lastName, phoneNumber, EMail, quantity, comments, playroom){
-        this.bookID = "PLR-" + (listOfBookings.length + 1);
+        this.bookID = listOfBookings.length + 1;
         this.bookQuantity = quantity;
         this.bookPlayroom = playroom;
         this.bookComments = comments;
@@ -73,30 +81,23 @@ function loadPage(){
     syncData("load");
     //  Mostrar Slots en pantalla
     for(const slot of listOfSlots){
-        //alert("Mostrando...");
         slot.drawSlot();
     }
 }
 
-function loadFromStorage(key, location){
+function loadFromStorage(key){
     let result = true;
-    let ob;
     //  Recuperar datos
     const toLoad = JSON.parse(localStorage.getItem(key));
-    alert("Cargar "+ key + " " + toLoad);  //  BORRAR
-    //  Crear objetos según datos
-    switch(location){
+    //  Cargar datos
+    switch(key){
         case "Slots":
-            //
-            ob = new BookingSlot(...Object.values(data));
+            toLoad !== null ? listOfSlots = toLoad.map(data => new BookingSlot(...Object.values(data))) : result = false;
             break;
         case "Bookings":
-            //
-            ob = new ClientBooking(...Object.values(data));
+            toLoad !== null ? listOfBookings = toLoad.map(data => new ClientBooking(...Object.values(data))) : result = false;
             break;
     }
-    //  Cargar datos
-    toLoad !== null ? location = toLoad.map(data => ob) : result = false;
     return result;
 }
 
@@ -110,14 +111,13 @@ function saveOnStorage(key, data){
 function  syncData(option){
     //  Control de ejecución
     let run = true;
-    let slotsLoaded;    //  La primera vez se necesita
+    let slotsLoaded, booksLoaded;
     while(run){
         //  Opciones
         switch(option){
             case "check":
                 //  Verificar si existen Slots
                 slotsLoaded ? run = false : option = "create";
-                //(!slotsLoaded) && (option = "create");
                 break;
             case "create":
                 //  Crear Slots
@@ -126,8 +126,8 @@ function  syncData(option){
                 break;
             case "load":
                 //  Cargar datos
-                slotsLoaded = loadFromStorage("Slots", listOfSlots);
-                loadFromStorage("Bookings", listOfBookings);
+                slotsLoaded = loadFromStorage("Slots");
+                booksLoaded = loadFromStorage("Bookings");
                 //  Verificación
                 option = "check";
                 break;
@@ -139,67 +139,62 @@ function  syncData(option){
                 break;
         }
     }
-}   //  fin syncData()
+}
 
-function validateBookingForm(){   //  Cambiar nombre
+function validateBookingForm(){
     //  Sincronizar datos
     loadPage();
-
     //  Variables
     let save = true;
     let check = 1;
-
     //  Elementos
-    const firstName = document.getElementById('cliFirstName');
-    const lastName = document.getElementById('cliLastName');
-    const phoneNumber = document.getElementById('cliPhoneNumber');
-    const EMail = document.getElementById('cliEMail');
-    const quantity = document.querySelector('#infQuantity option:checked');
-    const comments = document.getElementById('infComments');
-    const playroom = document.querySelector('input[name="playrooms"]:checked');
+    const elemFirstName = document.getElementById('cliFirstName');
+    const elemLastName = document.getElementById('cliLastName');
+    const elemPhoneNumber = document.getElementById('cliPhoneNumber');
+    const elemEMail = document.getElementById('cliEMail');
+    const elemQuantity = document.querySelector('#infQuantity option:checked');
+    const elemComments = document.getElementById('infComments');
+    const elemPlayroom = document.querySelector('input[name="playrooms"]:checked');
     //  Validar completitud de campos obligatorios
     do{
         switch(check){
             case 1:
-                save = filledTextInput(firstName);
+                save = filledTextInput(elemFirstName);
                 break;
             case 2:
-                save = filledTextInput(lastName);
+                save = filledTextInput(elemLastName);
                 break;
             case 3:
-                save = filledTextInput(phoneNumber);
+                save = filledTextInput(elemPhoneNumber);
                 break;
             case 4:
-                save = filledTextInput(EMail);
+                save = filledTextInput(elemEMail);
                 break;
             case 5:
-                save = filledTextInput(quantity);
+                save = filledTextInput(elemQuantity);
                 break;
             case 6:
-                save = filledTextInput(playroom);
+                save = filledTextInput(elemPlayroom);
                 break;
         }
         check++;
     }
     while(save && check <= 6);
-
     //  Guardar si los campos obligatorios está llenos
     if(save){
-        //  Guardar en la lista
-        const bookData = new ClientBooking(
-            firstName.value, 
-            lastName.value, 
-            phoneNumber.value, 
-            EMail.value, 
-            quantity.value, 
-            comments.value, 
-            playroom.value);
-        listOfBookings.push(bookData);
-
+        //  Datos
+        let first = elemFirstName.value;
+        let last = elemLastName.value;
+        let phone = elemPhoneNumber.value;
+        let mail = elemEMail.value;
+        let quantity = elemQuantity.value;
+        let comments = elemComments.value;
+        let room = elemPlayroom.value;
+        let bookToSave = new ClientBooking(first, last, phone, mail, quantity, comments, room);
+        //  Listar
+        listOfBookings.push(bookToSave);
         //  Cambiar disponibilidad
-        listOfSlots[playroom - 1].isVacant = false;
-        alert(listOfSlots[playroom - 1].isVacant);
-
+        listOfSlots[room - 1].isVacant = false;
         //  Guardar
         syncData("save");
     }
