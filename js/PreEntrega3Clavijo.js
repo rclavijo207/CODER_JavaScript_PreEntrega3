@@ -16,12 +16,12 @@ const filledTextInput =                                             //  Control 
 
 //  Clases
 class BookingSlot{
-    constructor(id, room, date, hour){
+    constructor(id, room, date, hour, vacancy){
         this.id = id;
         this.room = room;
         this.date = new Date(date);
         this.hour = hour;
-        this.isVacant = true;
+        this.isVacant = vacancy;
     }
     //  Generar HTML con slot
     drawSlot(){
@@ -41,15 +41,6 @@ class BookingSlot{
             container.appendChild(slot);
         }
     }
-    showSlot(){     // BORRAR
-        let msg = "Reserva:\n";
-        msg += `\n    ID:               ${this.id}`;
-        msg += `\n    Playroom:         ${this.room}`;
-        msg += `\n    Fecha:            ${this.date}`;
-        msg += `\n    Hora:             ${this.hour}`;
-        msg += `\n    Disponible?:      ${this.isVacant}`;
-        console.log(msg);
-    }
 }
 
 class ClientBooking{
@@ -61,17 +52,6 @@ class ClientBooking{
         this.clientName = firstName + " " + lastName;
         this.clientPhone = phoneNumber;
         this.clientEMail = EMail;
-    }
-    showBooking(){
-        let msg = "Datos reserva:\n";
-        msg += `\n    ID:               ${this.bookID}`;
-        msg += `\n    Cantidad:         ${this.bookQuantity}`;
-        msg += `\n    Playroom:         ${this.bookPlayroom}`;
-        msg += `\n    Comentarios:      ${this.bookComments}`;
-        msg += `\n    Cliente:          ${this.clientName}`;
-        msg += `\n    Teléfono:         ${this.clientPhone}`;
-        msg += `\n    Correo:           ${this.clientEMail}`;
-        alert(msg);
     }
 }
 
@@ -220,8 +200,8 @@ function slotsGenerator(){
                         break;
                 }
                 //  Listar
-                listOfSlots.push(new BookingSlot((listOfSlots.length + 1), "Café", d, hour));
-                listOfSlots.push(new BookingSlot((listOfSlots.length + 1), "Crema", d, hour));
+                listOfSlots.push(new BookingSlot((listOfSlots.length + 1), "Café", d, hour, true));
+                listOfSlots.push(new BookingSlot((listOfSlots.length + 1), "Crema", d, hour, true));
             }
         }
     }
